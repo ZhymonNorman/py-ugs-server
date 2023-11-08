@@ -137,7 +137,3 @@ CREATE TABLE IF NOT EXISTS ugs_db.Badges (
 );
 
 
-CREATE USER 'ugs_user'@'%' IDENTIFIED BY 'ugs_passw0rd';
-GRANT ALL ON ugs_db.* TO 'ugs_user'@'%';
-
-
