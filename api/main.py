@@ -72,11 +72,11 @@ def latest_route():
 	project=request.args.get('project')
 	result = LatestController.GetLastIds(project)
 	
-	if(request.content_type == "application/json"):
-		return make_json_response(result)
-	else:
+	if(request.content_type == "application/xml"):
 		return make_xml_response(result, LatestData.__name__)
-
+	else:
+		return make_json_response(result)
+		
 ###############################################################################
 # /api/comment
 # CommentController
@@ -87,10 +87,10 @@ def get_comment_route():
 	lastcommentid=request.args.get('lastcommentid')
 	result = CommentController.GetComments(project, lastcommentid)
 	
-	if(request.content_type == "application/json"):
-		return make_json_response(result)
-	else:
+	if(request.content_type == "application/xml"):
 		return make_xml_response(result, CommentData.__name__)
+	else:
+		return make_json_response(result)
 
 @app.route("/api/comment", methods=["POST"])
 def post_comment_route():
@@ -118,10 +118,10 @@ def get_build_route():
 		else:
 			result = BuildController.GetBuildsWithBuildType(project, buildtype)
 		
-	if(request.content_type == "application/json"):
-		return make_json_response(result)
-	else:
+	if(request.content_type == "application/xml"):
 		return make_xml_response(result, BuildData.__name__)
+	else:
+		return make_json_response(result)
 
 @app.route("/api/Build", methods=["POST"])
 def post_build_route():
@@ -138,10 +138,10 @@ def get_issues_route():
 	user=request.args.get('user')
 	result = IssuesController.GetIssues(user)
 	
-	if(request.content_type == "application/json"):
-		return make_json_response(result)
-	else:
+	if(request.content_type == "application/xml"):
 		return make_xml_response(result, IssueData.__name__)
+	else:
+		return make_json_response(result)
 
 @app.route("/api/issues", methods=["POST"])
 def post_issues_route():
@@ -163,10 +163,10 @@ def put_issue_route(issueid):
 def get_issue_builds_sub_route(issueid):
 	result = IssueBuildsSubController.GetBuilds(issueid)
 	
-	if(request.content_type == "application/json"):
-		return make_json_response(result)
-	else:
+	if(request.content_type == "application/xml"):
 		return make_xml_response(result, IssueBuildData.__name__)
+	else:
+		return make_json_response(result)
 
 ###############################################################################
 # /api/issues/<int:issueid>/diagnostics
@@ -197,10 +197,10 @@ def get_event_route():
 	lasteventid=request.args.get('lasteventid')
 	result = EventController.GetUserVotes(project, lasteventid)
 	
-	if(request.content_type == "application/json"):
-		return make_json_response(result)
-	else:
+	if(request.content_type == "application/xml"):
 		return make_xml_response(result, EventData.__name__)
+	else:
+		return make_json_response(result)
 
 @app.route("/api/event", methods=["POST"])
 def post_event_route():
